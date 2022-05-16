@@ -1,0 +1,32 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="inputContent">
+    <mat-form-field class="field" appearance="fill">
+      <mat-label>Technical name</mat-label>
+      <input matInput type="text" [(ngModel)]="technicalName" name="technicalName">
+    </mat-form-field>
+
+    <mat-form-field class="field" appearance="fill">
+      <mat-label>Display name</mat-label>
+      <input matInput type="text" [(ngModel)]="displayName" name="displayName">
+    </mat-form-field>
+
+    <mat-form-field class="field" appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="effectiveDate" name="effectiveDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="field" appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput type="text" [(ngModel)]="description" name="description">
+    </mat-form-field>
+  </div>
+
+  <button type="submit" mat-raised-button color="primary">Add new feature</button>
+
+  <div class="links">
+    <a [routerLink]="['/show','all']" routerLinkActive="linkActive" class="link">Current features </a>
+    <a [routerLink]="['/show', 'archived']" routerLinkActive="linkActive">Archived features</a>
+  </div>
+</form>

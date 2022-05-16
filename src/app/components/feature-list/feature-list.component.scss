@@ -1,0 +1,40 @@
+.content {
+  margin: auto;
+  padding: 50px;
+  text-align: center;
+}
+
+.links {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.field {
+  margin-right: 10px;
+}
+
+.featureList {
+  margin-top: 20px;
+}
+.noData{
+  padding-top: 20px;
+}
+.table {
+  &Header {
+    font-weight: 600;
+    &Name {
+      text-align: left;
+      border-bottom: solid 3px;
+    }
+  }
+  &Item {
+    text-align: left;
+    padding: 5px;
+    border-bottom: solid 2px lightgray;
+  }
+  &Container{
+    width: 80%;
+    padding-top: 50px;
+    margin: auto;
+  }
+}
+

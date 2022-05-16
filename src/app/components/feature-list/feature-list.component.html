@@ -1,0 +1,71 @@
+<div class="content">
+  <app-add-item></app-add-item>
+
+  <div *ngIf="this.featureService.allCurrentFeatures !== undefined ; else noData">
+    <table class="tableContainer">
+      <thead class="tableHeader">
+        <tr>
+          <td class="tableHeaderName">Technical name</td>
+          <td class="tableHeaderName">Display name</td>
+          <td class="tableHeaderName">Effective date</td>
+          <td class="tableHeaderName">Description</td>
+          <td class="tableHeaderName"></td>
+          <td class="tableHeaderName"></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feature of this.featureService.allCurrentFeatures">
+          <td class="tableItem">
+            <span *ngIf="!feature.editable; else editTechnicalName">
+              {{feature.technicalName}}
+            </span>
+            <ng-template #editTechnicalName>
+              <input [(ngModel)]="feature.technicalName" name="technicalName" />
+            </ng-template>
+          </td>
+
+          <td class="tableItem">
+            <span *ngIf="!feature.editable; else editDisplayName">
+              {{feature.displayName}}
+            </span>
+            <ng-template #editDisplayName>
+              <input [(ngModel)]="feature.displayName" name="displayName" />
+            </ng-template>
+          </td>
+
+          <td class="tableItem">
+            <p>{{feature.effectiveDate | date: 'MM/dd/yy' }}</p>
+          </td>
+
+          <td class="tableItem">
+            <span *ngIf="!feature.editable; else editDescription">
+              {{feature.description}}
+            </span>
+            <ng-template #editDescription>
+              <input [(ngModel)]="feature.description" name="description" />
+            </ng-template>
+          </td>
+
+          <td class="tableItem">
+            <button (click)="editFeature(feature)" mat-raised-button color="primary">
+              <span *ngIf="!editing; else noEditing">EDIT</span>
+              <ng-template #noEditing>SAVE</ng-template>
+            </button>
+          </td>
+
+          <td class="tableItem">
+            <button mat-raised-button *ngIf="router.url === '/show/all'" color="primary" (click)="archiveFeature(feature)">ARCHIVE</button>
+            <button mat-raised-button *ngIf="router.url === '/show/archived'" color="warn" (click)="deleteFeature(feature)">DELETE</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noData>
+    <div class="noData">
+      No features
+    </div>
+  </ng-template>
+
+</div>
